@@ -10,6 +10,11 @@ def clean_data(df: pd.DataFrame) -> Tuple[
     Annotated[pd.Series, "y_train"],
     Annotated[pd.Series, "y_test"],
 ]:
+    """
+    Component for cleaing data.
+    Args:
+        df: pandas.Dataframe
+    """
     try:
         dc = DataCleaning(df, DataPreProcessStrategy())
         processed_df = dc.handle_data()

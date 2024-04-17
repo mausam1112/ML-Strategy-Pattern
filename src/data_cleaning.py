@@ -17,6 +17,11 @@ class DataStrategy(ABC):
 
 class DataPreProcessStrategy(DataStrategy):
     def handle_data(self, data: pd.DataFrame) -> pd.DataFrame | pd.Series:
+        """
+        Preprocesses the data. (Here Label encoding.)
+        Args:
+            df: pandas.Dataframe
+        """
         try:
             label_encoder = LabelEncoder()
             data['variety'] = label_encoder.fit_transform(data['variety'])
@@ -32,6 +37,12 @@ class DataSplitStrategy(DataStrategy):
         Annotated[pd.Series, "y_train"],
         Annotated[pd.Series, "y_test"],
     ]:
+        """
+        Splits the data in train and test sets.
+
+        Args:
+            df: pandas.Dataframe
+        """
         try:
             X = data.drop(['variety'], axis=1)
             y = data['variety']
